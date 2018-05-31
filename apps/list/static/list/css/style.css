@@ -1,0 +1,18 @@
+body{
+  padding: 15px;
+  width: 1350px;
+}
+.left{
+  display: inline-block;
+  margin: 15px 50px 0px 0px;
+  width: 650px;
+}
+.right{
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 15px;
+  width: 600px;
+}
+#logout{
+  display: block;
+}

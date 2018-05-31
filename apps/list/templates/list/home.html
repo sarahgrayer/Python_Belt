@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Belt</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="{% static 'list/css/style.css' %}">
+  </head>
+  <body>
+  <h1>Hello, {{user.name}}!</h1>
+  <a href = "/logout" id="logout">Logout</a>
+  <div class="left">
+    <h3>Your Wish List:</h3>
+    <table>
+      <thead>
+        <th>Item</th>
+        <th>Added By</th>
+        <th>Date Added</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+          {% for item in my_list %}
+          <tr>
+            <td><a href="/show/{{item.id}}">{{ item.name }}</a></td>
+            <td>{{ item.created_by_name }}</td>
+            <td>{{ item.created_at }}</td>
+            {% if item.created_by_id is user.id %}
+              <td><a href="{{item.id}}/delete">Delete Item</a></td>
+            {% else %}
+              <td><a href="{{item.id}}/remove_wishlist">Remove from Wishlist</a></td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href = "/add_item">Add Item</a>
+    </div>
+    <div class="right">
+      <h3>Other Users' Wishlist:</h3>
+      <table>
+        <thead>
+          <th>Item</th>
+          <th>Added By</th>
+          <th>Date Added</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          {% for item in other_items %}
+          <tr>
+            <td><a href="/show/{{item.id}}">{{ item.name }}</a></td>
+            <td>{{ item.created_by_name }}</a></td>
+            <td>{{ item.created_at }}</td>
+            <td><a href="{{item.id}}/add_wishlist">Add to my Wishlist</a></td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </body>
+</html>

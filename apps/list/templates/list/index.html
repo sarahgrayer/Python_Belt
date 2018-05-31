@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Belt</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="{% static 'list/css/style.css' %}">
+  </head>
+  <body>
+  <h1>Welcome!</h1>
+  <div class="register">
+    <h2>Register</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+    <form action="/register" method="post" class="left">
+      <fieldset>
+        {% csrf_token %}
+        <label for "name">Name:</label>
+        <input type= "text" name= "name">
+        <label for "username">Username:</label>
+        <input type= "text" name= "username">
+        <p>*Password should be at least 8 characters</p>
+        <label for "password">Password:</label>
+        <input type= "password" name= "password">
+        <label for "confirm_password">Confirm Password:</label>
+        <input type= "password" name= "confirm_password">
+        <button class = "submit">Register</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="login">
+    <h2>Login</h2>
+      <form action="/login" method="post" class="right">
+        <fieldset>
+          {% csrf_token %}
+          <label for "username">Username:</label>
+          <input type= "text" name= "username">
+          <label for "password">Password:</label>
+          <input type= "password" name= "password">
+          <button class = "submit">Login</button>
+        </fieldset>
+      </form>
+    </fieldset>
+  </div>
+  </body>
+</html>
